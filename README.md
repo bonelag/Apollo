@@ -7,7 +7,7 @@ Major features:
 - [x] Built-in Virtual Display with HDR support that matches the resolution/framerate config of your client automatically
 - [x] Permission management for clients
 - [x] Clipboard sync
-- [x] Commands for client connection/disconnection (checkout [Auto pause/resume games](https://github.com/ClassicOldSong/Apollo/wiki/Auto-pause-resume-games))
+- [x] Commands for client connection/disconnection (checkout [Auto pause/resume games](https://github.com/bonelag/Cynes/wiki/Auto-pause-resume-games))
 - [x] Input only mode
 
 ## Usage
@@ -18,7 +18,7 @@ Currently Virtual Display support is Windows only, Linux support is planned and 
 
 ## About Permission System
 
-Check out the [Wiki](https://github.com/ClassicOldSong/Apollo/wiki/Permission-System)
+Check out the [Wiki](https://github.com/bonelag/Cynes/wiki/Permission-System)
 
 > [!NOTE]
 > The **FIRST** client paired with Apollo will be granted with FULL permissions, then other newly paired clients will only be granted with `View Streams` and `List Apps` permission. If you encounter `Permission Denied` error when trying to launch any app, go check the permission for that device and grant `Launch Apps` permission. The same applies to the situation when you find that you can't move mouse or type with keyboard on newly paired clients, grant the corresponding client `Mouse Input` and `Keyboard Input` permissions.
@@ -58,7 +58,7 @@ Whether HDR streaming looks good, it depends completely on your client.
 
 In short, ICC color correction should be totally useless while streaming HDR. It's your client's job to get HDR content displayed right, not the host. But in fact, it does affect the captured video stream and reflect changes on devices that can handle HDR correctly. On other devices that can't, the info is not respected at all.
 
-It's very complicated to explain why HDR is a total mess, and why enabling HDR makes the image appear dark/yellow. If it's your first time got HDR streaming working, and thinks HDR looks awful, you're right, but that's not Apollo's fault, it's your device that tone mapped SDR content to the maximum of the capability of its screen, there's no headroom for anything beyond that actual peak brightness for HDR. For details, please take a look [here](https://github.com/ClassicOldSong/Apollo/issues/164).
+It's very complicated to explain why HDR is a total mess, and why enabling HDR makes the image appear dark/yellow. If it's your first time got HDR streaming working, and thinks HDR looks awful, you're right, but that's not Apollo's fault, it's your device that tone mapped SDR content to the maximum of the capability of its screen, there's no headroom for anything beyond that actual peak brightness for HDR. For details, please take a look [here](https://github.com/bonelag/Cynes/issues/164).
 
 For client devices, usually Apple products that have HDR capability can be trusted to have good results, other than that, your luck depends.
 
@@ -73,17 +73,17 @@ SDR actually provides much more stable color accuracy, and are widely supported 
 
 ## How to run multiple instances of Apollo for multiple virtual displays
 
-Follow the instructions in the [Wiki](https://github.com/ClassicOldSong/Apollo/wiki/How-to-start-multiple-instances-of-Apollo).
+Follow the instructions in the [Wiki](https://github.com/bonelag/Cynes/wiki/How-to-start-multiple-instances-of-Apollo).
 
 ## FAQ
-Moved to [WiKi](https://github.com/ClassicOldSong/Apollo/wiki/FAQ)
+Moved to [WiKi](https://github.com/bonelag/Cynes/wiki/FAQ)
 
 ## Stuttering Clinic
-Here're some common causes and solutions for stutters: [WiKi](https://github.com/ClassicOldSong/Apollo/wiki/Stuttering-Clinic).
+Here're some common causes and solutions for stutters: [WiKi](https://github.com/bonelag/Cynes/wiki/Stuttering-Clinic).
 
 ## Device specific setups
 - Pixel devices might not be able to use native resolution:
-  - Change the device resolution to High: https://github.com/ClassicOldSong/Apollo/issues/700
+  - Change the device resolution to High: https://github.com/bonelag/Cynes/issues/700
 
 ## System Requirements
 
@@ -159,7 +159,7 @@ No real time chat support will ever be provided for Apollo and Artemis. Includin
 
 **Recommended**
 
-[Releases](https://github.com/ClassicOldSong/Apollo/releases)
+[Releases](https://github.com/bonelag/Cynes/releases)
 
 ### WinGet
 
@@ -196,7 +196,7 @@ I got kicked from Moonlight and Sunshine's Discord server and banned from Sunshi
 
 This is what I got for finding a bug, opened an issue, getting no response, troubleshoot myself, fixed the issue myself, shared it by PR to the main repo hoping my efforts can help someone else during the maintenance gap.
 
-Yes, I'm going away. [Apollo](https://github.com/ClassicOldSong/Apollo) and [Artemis(Moonlight Noir)](https://github.com/ClassicOldSong/moonlight-android) will no longer be compatible with OG Sunshine and OG Moonlight eventually, but they'll work even better with much more carefully designed features.
+Yes, I'm going away. [Apollo](https://github.com/bonelag/Cynes) and [Artemis(Moonlight Noir)](https://github.com/ClassicOldSong/moonlight-android) will no longer be compatible with OG Sunshine and OG Moonlight eventually, but they'll work even better with much more carefully designed features.
 
 The Moonlight repo had stayed silent for 5 months, with nobody actually responding to issues, and people are getting totally no help besides the limited FAQ in their Discord server. I tried to answer issues and questions, solve problems within my ability but I got kicked out just for helping others.
 
