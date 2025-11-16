@@ -45,15 +45,22 @@ jobs:
     name: Windows
     needs: setup_release
     permissions:
-      contents: write # Add write permission for releases
+      contents: write
     runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Init Submodules
+        shell: bash
+        run: |
+          git submodule update --init --recursive
 
       - name: Prepare tests
         id: prepare-tests
-        if: false 
+        if: false
         run: |
           function DownloadAndExtract {
             param (
@@ -83,7 +90,6 @@ jobs:
             }
 
             $baseName = (Get-Item $OutFile).BaseName
-
             Expand-Archive -Path $OutFile -DestinationPath $baseName
           }
 
@@ -93,9 +99,7 @@ jobs:
 
           Set-Location -Path usbmmidd_v2/usbmmidd_v2
           ./deviceinstaller64 install usbmmidd.inf usbmmidd
-
           ./deviceinstaller64 enableidd 1
-
           Set-Location -Path ../..
 
           DownloadAndExtract `
@@ -110,7 +114,6 @@ jobs:
             '-dir', 'C:\Windows\System32'
 
           C:\Windows\System32\devcon.exe disable "VMBUS\{da0a7802-e377-4aac-8e77-0558eb1073f8}"
-
           Set-Location -Path ..
 
           DownloadAndExtract `
@@ -123,11 +126,8 @@ jobs:
           Start-Process powershell -Verb runAs -ArgumentList '-Command ./MultiMonitorTool.exe /SetPrimary \\.\DISPLAY2'
 
           Start-Sleep -s 5
-
           ./MultiMonitorTool.exe /stext monitor_list.txt
-
           Start-Sleep -s 5
-
           Get-Content -Path monitor_list.txt
 
       - name: Setup Dependencies Windows
@@ -148,7 +148,6 @@ jobs:
       - name: Install minimal dependencies
         shell: msys2 {0}
         run: |
-          # Install only the essential packages first
           pacman -S --noconfirm \
             mingw-w64-ucrt-x86_64-gcc \
             mingw-w64-ucrt-x86_64-ninja \
@@ -211,12 +210,8 @@ jobs:
         run: |
           mkdir -p artifacts
           cd build
-
-          # package
           cpack -G NSIS
           cpack -G ZIP
-
-          # move
           mv ./cpack_artifacts/Cynes.exe ../artifacts/Cynes-installer.exe
           mv ./cpack_artifacts/Cynes.zip ../artifacts/Cynes-portable.zip
 
@@ -231,8 +226,8 @@ jobs:
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Explicitly set token
-          tag_name: ${{ github.event.release.tag_name }}  # Use release tag
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.event.release.tag_name }}
           draft: false
           prerelease: false
           generate_release_notes: true
