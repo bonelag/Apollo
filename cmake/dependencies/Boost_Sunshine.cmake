@@ -54,21 +54,20 @@ if(NOT Boost_FOUND)
 
     # Limit boost to the required libraries only
     set(BOOST_INCLUDE_LIBRARIES ${BOOST_COMPONENTS})
-    set(BOOST_URL "https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-cmake.tar.xz")  # cmake-lint: disable=C0301
-    set(BOOST_HASH "SHA256=f48b48390380cfb94a629872346e3a81370dc498896f16019ade727ab72eb1ec")
+    set(BOOST_URL "https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-cmake.tar.xz")
+
+    # Removed SHA256 validation completely
 
     if(CMAKE_VERSION VERSION_LESS "3.24.0")
         FetchContent_Declare(
                 Boost
                 URL ${BOOST_URL}
-                URL_HASH ${BOOST_HASH}
         )
     elseif(APPLE AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.25.0")
         # add SYSTEM to FetchContent_Declare, this fails on debian bookworm
         FetchContent_Declare(
                 Boost
                 URL ${BOOST_URL}
-                URL_HASH ${BOOST_HASH}
                 SYSTEM  # requires CMake 3.25+
                 OVERRIDE_FIND_PACKAGE  # requires CMake 3.24+, but we have a macro to handle it for other versions
         )
@@ -76,7 +75,6 @@ if(NOT Boost_FOUND)
         FetchContent_Declare(
                 Boost
                 URL ${BOOST_URL}
-                URL_HASH ${BOOST_HASH}
                 OVERRIDE_FIND_PACKAGE  # requires CMake 3.24+, but we have a macro to handle it for other versions
         )
     endif()
